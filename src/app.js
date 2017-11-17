@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter, {history} from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import {addWorkout} from './actions/workouts';
+import {setTextFilter} from './actions/filters';
+import getVisibleWorkouts from './selectors/workouts';
 import {login, logout} from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -11,11 +14,21 @@ import {firebase} from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
+
+store.dispatch(addWorkout({description: 'Running', time: 30}));
+store.dispatch(addWorkout({description: 'Walking', createdAt: 1000}));
+store.dispatch(addWorkout({description: 'Gym', time: 60}));
+
+const state = (store.getState());
+const visibleWorkouts = getVisibleWorkouts(state.workouts, state.filters);
+console.log(visibleWorkouts);
+
 const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
 );
+
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {

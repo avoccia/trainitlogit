@@ -1,7 +1,8 @@
 .button {
-  background: $blue;
+  font-family: 'Fjalla One', sans-serif;
+  background: $dark-blue;
   border: none;
-  color: white;
+  color: $off-white;
   display: inline-block;
   font-size: $font-size-large;
   font-weight: 300;
@@ -12,6 +13,14 @@
 
 .button--link {
   background: none;
+}
+
+.button--link:hover {
+  color: $pale-blue;
+}
+
+.is-active {
+  color: $pale-blue;
 }
 
 .button--secondary {

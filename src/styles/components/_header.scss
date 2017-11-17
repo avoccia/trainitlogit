@@ -10,9 +10,20 @@
 }
 
 .header__title {
-  color: white;
+  font-family: 'Permanent Marker', cursive;
+  color: $red;
   text-decoration: none;
   h1 {
     margin: 0;
   }
+}
+
+.header__nav {
+  display: inline;
+  list-style: none;
+}
+
+.header__nav li {
+  list-style: none;
+  display: inline;
 }

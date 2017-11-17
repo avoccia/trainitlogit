@@ -1,8 +1,11 @@
 import React from 'react';
+import WorkoutList from './WorkoutList';
+import WorkoutListFilters from './WorkoutListFilters';
 
 const DashboardPage = () => (
-  <div>
-    Dashboard page content
+  <div className="page-header">
+    <WorkoutListFilters />
+    <WorkoutList />
   </div>
 );
 

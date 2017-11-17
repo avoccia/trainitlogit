@@ -1,0 +1,59 @@
+.choose-us-wrapper{
+  padding-top: 50px;
+}
+
+.about-trainit img {
+  margin-top: 8px;
+  padding-top: 40px;
+  padding-left: 75px;
+}
+
+.choose-us-title {
+  padding-bottom: 50px;
+}
+
+.choose-us-title h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 37px;
+  position: relative;
+  
+}
+
+.choose-us-title h2:after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 70px;
+  height: 1px;
+  background-color: $red;
+}
+
+.choose-us-title p {
+  margin-top: 40px;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.choose-us-item {
+  padding-bottom: 4px;
+}
+
+.choose-us-item div {
+  top: 0;
+  left: 0;
+}
+
+.choose-us-item h3 {
+  color: $dark-blue;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.choose-us-item p {
+  color: $pale-blue;
+  font-size: 15px;
+}
