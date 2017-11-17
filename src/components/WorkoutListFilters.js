@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {DateRangePicker} from 'react-dates';
-import {setTextFilter, sortByDate, sortByTime, setStartDate, setEndDate} from '../actions/filters';
+import {setTextFilter, sortByDate, sortByTime, sortByDistance, setStartDate, setEndDate} from '../actions/filters';
 
 class WorkoutListFilters extends React.Component {
   state = {
@@ -28,13 +28,16 @@ class WorkoutListFilters extends React.Component {
           onChange={(e) => {
             if (e.target.value === 'date') {
               this.props.dispatch(sortByDate());
-            }else if (e.target.value === 'amount') {
+            }else if (e.target.value === 'time') {
               this.props.dispatch(sortByTime());
+            }else if (e.target.value === 'distance') {
+              this.props.dispatch(sortByDistance());
             }
           }}
         >
           <option value="date">Date</option>
-          <option value="amount">Time</option>
+          <option value="time">Time</option>
+          <option value="distance">Distance</option>
         </select>
         <DateRangePicker
           startDate={this.props.filters.startDate}

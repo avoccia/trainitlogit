@@ -5,6 +5,7 @@ export const addWorkout = (
   {
     description = '',
     note = '',
+    distance = 0,
     time = 0,
     createdAt = 0
   } = {}
@@ -15,6 +16,7 @@ export const addWorkout = (
     description,
     note,
     time,
+    distance,
     createdAt
   }
 });

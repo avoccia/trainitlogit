@@ -15,14 +15,6 @@ import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 
-store.dispatch(addWorkout({description: 'Running', time: 30}));
-store.dispatch(addWorkout({description: 'Walking', createdAt: 1000}));
-store.dispatch(addWorkout({description: 'Gym', time: 60}));
-
-const state = (store.getState());
-const visibleWorkouts = getVisibleWorkouts(state.workouts, state.filters);
-console.log(visibleWorkouts);
-
 const jsx = (
   <Provider store={store}>
     <AppRouter />

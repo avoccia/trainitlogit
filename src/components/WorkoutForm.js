@@ -15,6 +15,7 @@ export default class WorkoutForm extends React.Component {
       showDistance: false,
       note: props.workout ? props.workout.note : '',
       time: props.workout ? (props.workout.time).toString() : '',
+      distance: props.workout ? (props.workout.distance).toString() : '',
       createdAt: props.workout ? moment(props.workout.createdAt) : moment(),
       calendarFocused: false,
       error: '',
