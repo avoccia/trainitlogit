@@ -14,6 +14,11 @@ export const sortByTime = () => ({
   type: 'SORT_BY_TIME',
 });
 
+// SORT_BY_DISTANCE
+export const sortByDistance = () => ({
+  type: 'SORT_BY_DISTANCE',
+});
+
 // SET_START_DATE
 export const setStartDate = (startDate) => ({
   type: 'SET_START_DATE',

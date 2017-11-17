@@ -41,7 +41,7 @@ export default class WorkoutForm extends React.Component {
   };
   onTimeChange = (e) => {
     const time = e.target.value;
-  if (time.match(/^[0-9]*$/)) {
+  if (time.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({time}));
     }
   };
