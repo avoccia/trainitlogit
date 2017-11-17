@@ -27,6 +27,7 @@
     "firebase": "4.2.0",
     "font-awesome": "^4.7.0",
     "history": "4.7.2",
+    "js-yaml": "^3.10.0",
     "moment": "2.18.1",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
