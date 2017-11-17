@@ -1,25 +1,31 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
 
 // ADD_WORKOUT
-export const addWorkout = (
-  {
-    description = '',
-    note = '',
-    distance = 0,
-    time = 0,
-    createdAt = 0
-  } = {}
-) => ({
+export const addWorkout = (workout) => ({
   type: 'ADD_WORKOUT',
-  workout: {
-    id: uuid(),
-    description,
-    note,
-    time,
-    distance,
-    createdAt
-  }
+  workout
 });
+
+// Start ADDWORKOUT
+export const startAddWorkout = (workoutData = {}) => {
+  return (dispatch) => {
+    const {
+      description = '',
+      note = '',
+      time = 0,
+      createdAt = 0
+    } = workoutData;
+    const workout = {description, note, time, createdAt};
+
+   return database.ref('workouts').push(workout).then((ref) => {
+      dispatch(addWorkout({
+        id: ref.key,
+        ...workout
+      }));
+    });
+  };
+};
 
 // REMOVE_WORKOUT
 export const removeWorkout = ({id} = {}) => ({

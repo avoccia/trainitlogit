@@ -2,7 +2,7 @@
   font-family: 'Fjalla One', sans-serif;
   background: $dark-blue;
   border: none;
-  color: $off-white;
+  color: $light-grey;
   display: inline-block;
   font-size: $font-size-large;
   font-weight: 300;
@@ -16,11 +16,11 @@
 }
 
 .button--link:hover {
-  color: $pale-blue;
+  color: $light-blue;
 }
 
 .is-active {
-  color: $pale-blue;
+  color: $light-blue;
 }
 
 .button--secondary {

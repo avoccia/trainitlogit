@@ -20,11 +20,6 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         sortBy: 'date'
       };
-    case 'SORT_BY_DISTANCE':
-      return {
-        ...state,
-        sortBy: 'distance'
-      }
     case 'SORT_BY_TIME':
       return {
         ...state,

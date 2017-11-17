@@ -14,8 +14,6 @@ export default (workouts, {text, sortBy, startDate, endDate}) => {
       return a.createdAt < b.createdAt ? 1 : -1;
     } else if (sortBy === 'time') {
       return a.time < b.time ? 1 : -1;
-    } else if (sortBy === 'distance') {
-      return a.distance < b.distance ? 1 : -1;
     } 
   });
 };
