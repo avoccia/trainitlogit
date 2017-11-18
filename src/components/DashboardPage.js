@@ -5,9 +5,7 @@ import WorkoutsSummary from './WorkoutsSummary';
 
 const DashboardPage = () => (
   <div className="content-container">
-    <div className="page-header">
-      <WorkoutsSummary />
-    </div>
+    <WorkoutsSummary />
     <WorkoutListFilters />
     <WorkoutList />
   </div>

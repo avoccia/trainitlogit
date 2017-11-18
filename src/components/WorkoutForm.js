@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import {SingleDatePicker} from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 
 const now = moment();
 
@@ -11,13 +10,11 @@ export default class WorkoutForm extends React.Component {
 
     this.state = {
       description: props.workout ? props.workout.description : '',
-      showDistance: false,
       note: props.workout ? props.workout.note : '',
       time: props.workout ? (props.workout.time).toString() : '',
       createdAt: props.workout ? moment(props.workout.createdAt) : moment(),
       calendarFocused: false,
       error: '',
-      display: {display: 'none'}
     };
   }
   
@@ -31,7 +28,7 @@ export default class WorkoutForm extends React.Component {
   };
   onTimeChange = (e) => {
     const time = e.target.value;
-  if (time.match(/^\d{1,}(\.\d{0,2})?$/)) {
+    if (!time || time.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({time}));
     }
   };
@@ -52,16 +49,16 @@ export default class WorkoutForm extends React.Component {
       this.setState(() => ({error: ''}))
       this.props.onSubmit({
         description: this.state.description,
-        time: parseInt(this.state.time, 10),
+        time: parseFloat(this.state.time, 10),
         createdAt: this.state.createdAt.valueOf(),
         note: this.state.note
       });
     }
-  }
+  };
   render() {
     return (
       <div>
-        {this.state.error && <p>{this.state.error}</p>}
+      {this.state.error && <p>{this.state.error}</p>}  
         <form onSubmit={this.onSubmit}>
           <select 
             autoFocus

@@ -1,5 +1,4 @@
 // Workouts Reducer
-
 const workoutsReducerDefaultState = [];
 
 export default (state = workoutsReducerDefaultState, action) => {
@@ -20,8 +19,10 @@ export default (state = workoutsReducerDefaultState, action) => {
           };
         } else {
           return workout;
-        };
+        }
       });
+    case 'SET_WORKOUTS':
+      return action.workouts;
     default:
       return state;
   }

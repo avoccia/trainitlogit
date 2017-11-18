@@ -3,41 +3,42 @@ import {connect} from 'react-redux';
 import {DateRangePicker} from 'react-dates';
 import {setTextFilter, sortByDate, sortByTime, sortByDistance, setStartDate, setEndDate} from '../actions/filters';
 
-class WorkoutListFilters extends React.Component {
+export class WorkoutListFilters extends React.Component {
   state = {
     calendarFocused: null
   };
   onDatesChange = ({startDate, endDate}) => {
-    this.props.dispatch(setStartDate(startDate));
-    this.props.dispatch(setEndDate(endDate));
+    this.props.setStartDate(startDate);
+    this.props.setEndDate(endDate);
   };
   onFocusChange = (calendarFocused) => {
-    this.setState(() => ({calendarFocused}))
+    this.setState(() => ({calendarFocused}));
+  };
+  onTextChange = (e) => {
+    this.props.setTextFilter(e.target.value);
+  };
+  onSortChange = (e) => {
+    if (e.target.value === 'date') {
+      this.props.sortByDate();
+    } else if (e.target.value === 'time') {
+      this.props.sortByTime();
+    }
   };
   render() {
     return (
       <div>
         <input
           type="text"
+          placeholder="Search Workouts"
           value={this.props.filters.text}
-          onChange={(e) => {
-            this.props.dispatch(setTextFilter(e.target.value));
-        }}/>
+          onChange={this.onTextChange}
+        />
         <select
           value={this.props.filters.sortBy}
-          onChange={(e) => {
-            if (e.target.value === 'date') {
-              this.props.dispatch(sortByDate());
-            }else if (e.target.value === 'time') {
-              this.props.dispatch(sortByTime());
-            }else if (e.target.value === 'distance') {
-              this.props.dispatch(sortByDistance());
-            }
-          }}
+          onChange={this.onSortChange}
         >
           <option value="date">Date</option>
           <option value="time">Time</option>
-          <option value="distance">Distance</option>
         </select>
         <DateRangePicker
           startDate={this.props.filters.startDate}
@@ -54,10 +55,16 @@ class WorkoutListFilters extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     filters: state.filters
-  };
-};
+});
 
-export default connect(mapStateToProps)(WorkoutListFilters);
+const mapDispatchToProps = (dispatch) => ({
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  sortByDate: () => dispatch(sortByDate()),
+  sortByTime: () => dispatch(sortByTime()),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setEndDate: (endDate) => dispatch(setEndDate(endDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutListFilters);
