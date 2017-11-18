@@ -11,10 +11,17 @@ export class AddWorkoutPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Add Workout</h1>
-        <WorkoutForm 
-          onSubmit={this.onSubmit}
-        />
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Add Workout</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <WorkoutForm 
+            onSubmit={this.onSubmit}
+          />
+        </div>
+        
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import numeral from 'numeral';
 import selectWorkouts from '../selectors/workouts';
 import selectWorkoutsTotal from '../selectors/workouts-total';
@@ -12,7 +13,7 @@ export const WorkoutsSummary = ({workoutCount, workoutsTotal}) => {
       <div className="content-container">
         <h1 className="page-header__title">Viewing <span>{workoutCount}</span> {workoutWord} totalling <span>{formattedWorkoutsTotal}</span></h1>
         <div className="page-header__actions">
-        
+          <Link className="button button--dashboard" to="/create">Add Workout</Link>
         </div>
       </div>     
     </div>

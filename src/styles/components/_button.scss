@@ -24,5 +24,15 @@
 }
 
 .button--secondary {
+  color: $dark-blue;
+  background: $light-grey;
+}
+
+.button--dashboard {
+  background: $white;
+  color: $dark-blue;
+}
+
+.button--dashboard:hover {
   background: $light-grey;
 }

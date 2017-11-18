@@ -57,10 +57,10 @@ export default class WorkoutForm extends React.Component {
   };
   render() {
     return (
-      <div>
-      {this.state.error && <p>{this.state.error}</p>}  
-        <form onSubmit={this.onSubmit}>
+        <form className="form" onSubmit={this.onSubmit}>
+          {this.state.error && <p className="form__error">{this.state.error}</p>}  
           <select 
+            className="select"
             autoFocus
             value={this.state.description}
             onChange={this.onDescriptionChange}
@@ -74,6 +74,7 @@ export default class WorkoutForm extends React.Component {
           </select>
           <input
             type="text"
+            className="text-input"
             placeholder="Time 🕒 (Minutes)"
             value={this.state.time}
             onChange={this.onTimeChange}
@@ -87,14 +88,16 @@ export default class WorkoutForm extends React.Component {
             isOutsideRange={() => false}
           />
           <textarea
+            className="textarea"
             placeholder="Add a note about your workout! 💪"
             value = {this.state.note}
             onChange={this.onNoteChange}
           >
           </textarea>
-          <button>Add Workout</button>
+          <div>
+            <button className="button button-add-workout-form">Save Workout</button>
+          </div>
         </form>
-      </div>
     )
   }
 }

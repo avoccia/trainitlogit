@@ -4,10 +4,10 @@ import WorkoutListFilters from './WorkoutListFilters';
 import WorkoutsSummary from './WorkoutsSummary';
 
 const DashboardPage = () => (
-  <div className="content-container">
+  <div>
     <WorkoutsSummary />
     <WorkoutListFilters />
-    <WorkoutList />
+    <WorkoutList />   
   </div>
   
 );
