@@ -12,15 +12,28 @@ export default class WorkoutForm extends React.Component {
       description: props.workout ? props.workout.description : '',
       note: props.workout ? props.workout.note : '',
       time: props.workout ? (props.workout.time).toString() : '',
+      distance: props.workout ? (props.workout.distance).toString() : '',
       createdAt: props.workout ? moment(props.workout.createdAt) : moment(),
       calendarFocused: false,
-      error: '',
+      display: props.workout && props.workout.description === 'Running' || 'Walking' || 'Biking' ? {display: 'inline'} : {display: 'none'},
+      error: ''
     };
   }
   
   onDescriptionChange = (e) => {
     var description = e.target.value;
     this.setState(() => ({description}));
+    if (e.target.value === 'Running' || e.target.value === 'Walking' || e.target.value === 'Biking') {
+      this.setState(() => ({display: {display: 'inline'}}));
+    } else if (e.target.value === 'Sports' || e.target.value === 'Gym') {
+      this.setState(() => ({display: {display: 'none'}}));
+    }
+  };
+  onDistanceChange = (e) => {
+    const distance = e.target.value;
+    if (!distance || distance.match(/^\d{1,}(\.\d{0,2})?$/)) {
+      this.setState(() => ({distance}));
+    }
   };
   onNoteChange = (e) => {
     const note = e.target.value;
@@ -50,6 +63,7 @@ export default class WorkoutForm extends React.Component {
       this.props.onSubmit({
         description: this.state.description,
         time: parseFloat(this.state.time, 10),
+        distance: parseFloat(this.state.distance, 10),
         createdAt: this.state.createdAt.valueOf(),
         note: this.state.note
       });
@@ -72,6 +86,14 @@ export default class WorkoutForm extends React.Component {
             <option value="Sports">Sports 🏈</option>
             <option value="Gym">Gym 🏋️‍</option>
           </select>
+          <input
+            type="number"
+            className="text-input"
+            placeholder="Distance (Miles)"
+            value={this.state.distance}
+            style={this.state.display}
+            onChange={this.onDistanceChange}
+          />
           <input
             type="text"
             className="text-input"

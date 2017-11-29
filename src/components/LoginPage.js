@@ -1,14 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {startLogin} from '../actions/auth';
+import {startLogin, startFacebookLogin, startTwitterLogin} from '../actions/auth';
 
-export const LoginPage = ({startLogin}) => (
+export const LoginPage = ({startLogin, startFacebookLogin, startTwitterLogin}) => (
   <div className="wrapper wrapper-loginpage">
     <div className="box-layout">
       <div className="box-layout__box">
         <h1 className="box-layout__title">Train It Log It</h1>
         <p>Challenge yourself, challenge your friends</p>
-        <button className="button" onClick={startLogin}>Login with Google</button>
+        <div>
+          <button className="button button--login" onClick={startLogin}>Login with Google</button>
+        </div>
+        <div>
+          <button className="button button--login" onClick={startFacebookLogin}>Login with Facebook</button>        
+        </div>
+        <div>
+        <button className="button button--login" onClick={startTwitterLogin}>Login with Twitter</button> 
+        </div>
       </div>
     </div>
     <div className="content-container">
@@ -58,7 +66,9 @@ export const LoginPage = ({startLogin}) => (
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin())
+  startLogin: () => dispatch(startLogin()),
+  startFacebookLogin: () => dispatch(startFacebookLogin()),
+  startTwitterLogin: () => dispatch(startTwitterLogin())
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);

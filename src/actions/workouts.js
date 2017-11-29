@@ -7,7 +7,7 @@ export const addWorkout = (workout) => ({
   workout
 });
 
-// Start ADDWORKOUT
+// START_ADD_WORKOUT
 export const startAddWorkout = (workoutData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
@@ -15,9 +15,10 @@ export const startAddWorkout = (workoutData = {}) => {
       description = '',
       note = '',
       time = 0,
+      distance = 0,
       createdAt = 0
     } = workoutData;
-    const workout = {description, note, time, createdAt};
+    const workout = {description, note, time, distance, createdAt};
 
    return database.ref(`users/${uid}/workouts`).push(workout).then((ref) => {
       dispatch(addWorkout({

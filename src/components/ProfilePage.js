@@ -1,15 +1,24 @@
 import React from 'react';
 import firebase from '../firebase/firebase';
 
-const ProfilePage = () => (
-  <div>
-    <div className="page-header">
-      <div className="content-container">
-        <h1 className="page-header__title">Profile</h1>
-        <p>Under Construction</p>
-      </div>
-    </div>
-  </div>
-);
+export default class ProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default ProfilePage;
+  }
+  render() {
+    return (
+      <div>
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Profile</h1>
+            <p>Under Construction</p>
+          </div>
+        </div>
+        <div className="content-container">
+        
+        </div>
+      </div>
+    );
+  }
+}

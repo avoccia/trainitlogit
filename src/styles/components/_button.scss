@@ -36,3 +36,12 @@
 .button--dashboard:hover {
   background: $light-grey;
 }
+
+.button--login {
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.button--login:hover {
+  color: $light-blue;
+} 

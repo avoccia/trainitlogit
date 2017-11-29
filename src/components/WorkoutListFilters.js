@@ -22,6 +22,8 @@ export class WorkoutListFilters extends React.Component {
       this.props.sortByDate();
     } else if (e.target.value === 'time') {
       this.props.sortByTime();
+    } else if (e.target.value === 'distance') {
+      this.props.sortByDistance();
     }
   };
   render() {
@@ -45,6 +47,7 @@ export class WorkoutListFilters extends React.Component {
             >
               <option value="date">Date</option>
               <option value="time">Time</option>
+              <option value="distance">Distance</option>
             </select>
           </div>
           <div className="input-group__item">
@@ -76,6 +79,7 @@ const mapDispatchToProps = (dispatch) => ({
   setTextFilter: (text) => dispatch(setTextFilter(text)),
   sortByDate: () => dispatch(sortByDate()),
   sortByTime: () => dispatch(sortByTime()),
+  sortByDistance: () => dispatch(sortByDistance()),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
   setEndDate: (endDate) => dispatch(setEndDate(endDate))
 });
