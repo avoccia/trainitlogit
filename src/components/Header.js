@@ -3,6 +3,9 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {startLogout} from '../actions/auth';
 
+// Use Link/NavLink to take advantage of client side routing
+// Use NavLink inside of main navigation
+
 export const Header = ({startLogout}) => (
   <header className="header">
     <div className="content-container">

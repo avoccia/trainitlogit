@@ -1,21 +1,24 @@
 import React from 'react';
 import database from '../firebase/firebase';
 import {connect} from 'react-redux';
+import {firebase} from './../firebase/firebase';
 
 export default class LeaderboardPage extends React.Component {
   constructor(props) {
     super(props);
-
-    var ref = database.ref('users');
-    ref.on('value', gotData, errData);
-    var running;
-
-    function gotData(data) {
-      var users = data.val();
-      console.log(users);
+    this.state = {leaderBoard: null};
+  };
+  
+  componentDidMount() {
+    // Reference to the database
+    let ref = database.ref('users');
+    
+    ref.once('value').then((snapshot) => {
+      var users = snapshot.val();
+      console.log('Users Data', users);
       var keys = Object.keys(users);
-      console.log(keys);
-      running = [];
+      console.log('Keys', keys);
+      let running = [];
       var runningTotal = 0;
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
@@ -34,28 +37,19 @@ export default class LeaderboardPage extends React.Component {
             [k]: runningTotal
           });
         }
-        
 
         runningTotal = 0;
-        
-        
-        //console.log(k, time);
+
       }
-
-      console.log(running);
-      return running;
-      
-    }
-
-    var list = gotData();
-    console.log(list);
-
-    function errData(err) {
-      console.log('Error!');
-      console.log(err);
-    }
+        console.log(running);
+        this.setState({leaderBoard: running});
+    }).catch(function(error) {
+      console.log('Failed to send notification to user:', error)
+    });
   }
+
   render() {
+    if(this.state.leaderBoard) {
     return (
       <div>
         <div className="page-header">
@@ -68,7 +62,13 @@ export default class LeaderboardPage extends React.Component {
           <div className="row">
             <div className="row__medium-4">
               <h3>Running 🏃</h3>
-              
+                <ol>
+                  {this.state.leaderBoard.map((workout) => (
+                    <li>
+                      {Object.keys(workout)[0]} - <strong>{workout[Object.keys(workout)[0]]}</strong>
+                    </li>
+                  ))}
+                </ol>
             </div>
             <div className="row__medium-4">
               <h3>Walking 🚶‍</h3>
@@ -91,5 +91,8 @@ export default class LeaderboardPage extends React.Component {
         </div>
       </div>
     );
+  } else {
+    return (<div>Loading...</div>);
+  }
   }
 }

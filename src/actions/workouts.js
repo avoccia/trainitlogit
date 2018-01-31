@@ -72,6 +72,8 @@ export const setWorkouts = (workouts) => ({
 export const startSetWorkouts = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    console.log(getState().auth.displayName);
+    console.log(getState().auth.email);
     return database.ref(`users/${uid}/workouts`).once('value').then((snapshot) => {
       const workouts = [];
 

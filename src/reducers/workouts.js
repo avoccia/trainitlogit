@@ -1,4 +1,6 @@
 // Workouts Reducer
+
+// Sets the default state
 const workoutsReducerDefaultState = [];
 
 export default (state = workoutsReducerDefaultState, action) => {

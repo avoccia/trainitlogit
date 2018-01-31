@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import AppRouter, {history} from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {startSetWorkouts} from './actions/workouts';
-import {login, logout} from './actions/auth';
+import {login, logout, startLoggedIn} from './actions/auth';
 import getVisibleWorkouts from './selectors/workouts';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -31,12 +31,22 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(login(user.uid));
+    store.dispatch(login(user.uid, user.displayName, user.email));
+
+    // Dispatch call to save user profile info into the database
+    store.dispatch(startLoggedIn(user.uid, user.displayName, user.email));
+
     store.dispatch(startSetWorkouts()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
         history.push('/dashboard');
       }
+      // Test to see user information
+      // if (user !== null) {
+      //   var name, email;
+      //   console.log("Name: " + user.displayName);
+      //   console.log("Email: " + user.email);
+      // }
     });
   } else {
     store.dispatch(logout());

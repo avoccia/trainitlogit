@@ -17,13 +17,20 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <Switch>
+
         <PublicRoute path="/" component={LoginPage} exact={true} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/create" component={AddWorkoutPage} />
+
+        {/* :id makes the route dynamic */}
         <PrivateRoute path="/edit/:id" component={EditWorkoutPage} />
+
         <PrivateRoute path="/leaderboard" component={LeaderboardPage} />
         <PrivateRoute path="/profile/:id" component={ProfilePage} />
+        
+        {/* Fall back route if the user tries to go to a page that doesn't exist */}
         <Route component={NotFoundPage}/>
+
       </Switch>
     </div>
   </Router>

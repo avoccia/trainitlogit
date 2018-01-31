@@ -59,6 +59,7 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
+      // Tells dev server we're handling routing via client side code
       historyApiFallback: true,
       publicPath: '/dist/'
     }

@@ -9,7 +9,6 @@ const DashboardPage = () => (
     <WorkoutListFilters />
     <WorkoutList />   
   </div>
-  
 );
 
 export default DashboardPage;
