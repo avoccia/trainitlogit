@@ -30,23 +30,22 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
+  console.log('Check for user');
   if (user) {
-    store.dispatch(login(user.uid, user.displayName, user.email));
+    console.log("User", user.uid);
+    store.dispatch(login(user.uid));
 
     // Dispatch call to save user profile info into the database
     store.dispatch(startLoggedIn(user.uid, user.displayName, user.email));
 
     store.dispatch(startSetWorkouts()).then(() => {
+     // console.log('Dispatch')
       renderApp();
-      if (history.location.pathname === '/') {
+      //console.log('Check if pathe = "/"')
+     if (history.location.pathname === '/') {
+       console.log('Before dashboard redirect');
         history.push('/dashboard');
       }
-      // Test to see user information
-      // if (user !== null) {
-      //   var name, email;
-      //   console.log("Name: " + user.displayName);
-      //   console.log("Email: " + user.email);
-      // }
     });
   } else {
     store.dispatch(logout());

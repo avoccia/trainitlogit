@@ -2,35 +2,36 @@ import {firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider}
 import database from '../firebase/firebase';
 import uuid from 'uuid';
 
-export const login = (uid, displayName, email) => ({
+export const login = (uid) => ({
   type: 'LOGIN',
   // Gives each user a random id
-  uid,
-  // Fetches the display name and email for the user
-  displayName,
-  email
+  uid
 });
 
 // Add User Info
-export const addUserInfo = (info) => {
-  info
-};
-
+export const addUserInfo = (displayName, email) =>  {
+  console.log("Add user info");
+  return {
+    type: 'ADD_USER_INFO',
+    displayName,
+    email
+  };
+}
 // Save User Info to the database
-export const startLoggedIn = () => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const displayName = getState().auth.displayName;
-    const email = getState().auth.email;
+export const startLoggedIn = (uid, displayName, email) => {
+  console.log('startLoggedIn');
+  return (dispatch) => {
+    //   const uid = getState().auth.uid;
+    //   const displayName = getState().auth.displayName;
+    //   const email = getState().auth.email;
     const profile = {displayName, email};
+    //   console.log("Profile", profile);
 
-    if (!`users/${uid}/profileInfo`)
-      return database.ref(`users/${uid}/profileInfo`).push(profile).then((ref) => {
-        dispatch(addUserInfo({
-          id: ref.key,
-          ...profile
-        }));
-      });
+
+    database.ref(`users/${uid}/profileInfo`).set(profile).then(() => {
+      console.log("Before dispatch");
+      dispatch(addUserInfo(displayName, email));
+    });
   };
 };
 

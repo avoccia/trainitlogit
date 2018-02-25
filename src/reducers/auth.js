@@ -3,6 +3,10 @@ export default (state = {}, action) => {
     case 'LOGIN':
       return {
         uid: action.uid,
+
+      };
+    case 'ADD_USER_INFO':
+      return {
         displayName: action.displayName,
         email: action.email
       };
